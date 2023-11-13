@@ -5,43 +5,8 @@
 
 <!-- ******** !-->
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<script>navigator.serviceWorker.register("/sw.js")</script> 
-	
-<script>
-	if ("serviceWorker" in navigator) {
-  // declaring scope manually
-  navigator.serviceWorker.register("/sw.js", { scope: "/product/" }).then(
-    (registration) => {
-      console.log("Service worker registration succeeded:", registration);
-    },
-    (error) => {
-      console.error(`Service worker registration failed: ${error}`);
-    },
-  );
-} else {
-  console.error("Service workers are not supported.");
-}
-</script>	
-	// This is the "Offline copy of pages" service worker
 
-const CACHE = "pwabuilder-offline";
-
-importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js');
-
-self.addEventListener("message", (event) => {
-  if (event.data && event.data.type === "SKIP_WAITING") {
-    self.skipWaiting();
-  }
-});
-
-workbox.routing.registerRoute(
-  new RegExp('/*'),
-  new workbox.strategies.StaleWhileRevalidate({
-    cacheName: CACHE
-  })
-);
-	
-<title>Rasskazov_LTU</title>
+<title>Emojis</title>
 
 <link rel="shortcut icon" href="favicon.ico">
 
