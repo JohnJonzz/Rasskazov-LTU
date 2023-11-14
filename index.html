@@ -26,7 +26,26 @@
 <!-- app icon for ios -->
 <link rel="apple-touch-icon" href="icons/apple-touch-icon-80x80.png">
 
+<script>
+	const CACHE = "pwabuilder-offline";
 
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js');
+
+self.addEventListener("message", (event) => {
+  if (event.data && event.data.type === "SKIP_WAITING") {
+    self.skipWaiting();
+  }
+});
+
+workbox.routing.registerRoute(
+  new RegExp('/*'),
+  new workbox.strategies.StaleWhileRevalidate({
+    cacheName: CACHE
+  })
+);
+</script>
+
+	
     <link rel="apple-touch-icon" sizes="152x152" href="icons/touch-icon-ipad.png">
     <link rel="apple-touch-icon" sizes="180x180" href="icons/touch-icon-iphone.png">
     <link rel="apple-touch-icon" sizes="180x180" href="icons/touch-icon-iphone-retina.png">
